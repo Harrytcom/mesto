@@ -1,0 +1,21 @@
+.footer__copyrights {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #545454;
+  display: flex;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  /* margin-right: 19px;
+  margin-left: 19px;
+  margin-block-start: 0;
+  margin-block-end: 0; */
+}
+
+@media (min-width: 768px) {
+  .footer__copyrights {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
