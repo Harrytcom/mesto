@@ -6,16 +6,13 @@
   color: #545454;
   display: flex;
   margin-block-start: 0;
-  margin-block-end: 0;
-  /* margin-right: 19px;
-  margin-left: 19px;
-  margin-block-start: 0;
-  margin-block-end: 0; */
+  margin-block-end: 36px;
 }
 
 @media (min-width: 768px) {
   .footer__copyrights {
     font-size: 18px;
     line-height: 22px;
+    max-width: 880px;
   }
 }
