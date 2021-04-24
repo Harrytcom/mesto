@@ -25,5 +25,7 @@
   .popup__save-button {
     background-image: url(../../../images/popup-save-button-xl.svg);
     width: 358px;
+    font-size: 18px;
+    line-height: 22px;
   }
 }

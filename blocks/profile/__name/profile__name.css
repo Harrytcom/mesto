@@ -1,5 +1,5 @@
 .profile__name {
-  font-family: Inter;
+  font-family: "Inter", "Arial", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 27px;
@@ -18,8 +18,6 @@
 
 @media (min-width: 768px) {
   .profile__name {
-    grid-area: name;
-    justify-self: flex-start;
     max-width: 294px;
     width: 294px;
     font-size: 42px;
