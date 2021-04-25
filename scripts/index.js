@@ -3,7 +3,6 @@ let popup = document.querySelector('.popup'); // присвоил весь ко�
 let closeEditFormButton = document.querySelector('.popup__close'); // присвоил кнопке Закрыть
 let nameInput = popup.querySelector('.popup__input_name-js'); // строка "Имя" в Инпуте Попап.
 let jobInput = popup.querySelector('.popup__input_career-js'); // строка "О себе" в Инпуте Попап.
-let saveButton = popup.querySelector('.popup__save-button'); // кнопка Сохранить в попапе.
 let profileName = document.querySelector('.profile__name'); // строка "Имя" в ХТМЛ
 let profileCareer = document.querySelector('.profile__career'); // строка "О себе" в ХТМЛ
 let submitForm = document.querySelector('.popup__container');
