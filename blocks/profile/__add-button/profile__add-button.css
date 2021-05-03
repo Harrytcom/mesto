@@ -13,6 +13,7 @@
   align-self: center;
   cursor: pointer;
   justify-self: center;
+  transition: opacity .3s ease-in-out;
 }
 
 @media (min-width: 768px) {

@@ -9,6 +9,7 @@
   outline: none;
   background-color: #fff;
   cursor: pointer;
+  transition: opacity .3s ease-in-out;
 }
 
 .elements__like-button:active {
