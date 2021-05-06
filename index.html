@@ -23,7 +23,7 @@
 
       <section class="elements">
 
-<div class="elements__card-container"></div>
+
 
         <!-- <div class="elements__item">
           <img class="elements__image" src="./images/elements-karachaevo.png" alt="Карачаево-Черкессия">
@@ -74,7 +74,7 @@
       </footer>
     </main>
 
-    <!-- форма редактирования профиля -->
+    <!-- popup редактирования профиля -->
     <div class="popup popup__profile-form">
       <form class="popup__container" name="profileValues">
         <button class="popup__close" type="reset"></button>
@@ -87,29 +87,33 @@
       </form>
     </div>
 
-    <!-- форма добавления карточки -->
+    <!-- popup добавления карточки -->
+    <div class="popup popup__card-form">
+      <form class="popup__container popup__card-container">
+        <button class="popup__close popup__close_card-js" type="button"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <fieldset class="popup__form">
+          <input class="popup__input popup__input_place-name-js" type="text" name="userName" placeholder="Название">
+          <input class="popup__input popup__input_place-link-js" type="text" name="userCareer" placeholder="Ссылка на картинку">
+          <button class="popup__save-button" type="submit">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+
+    <!-- импорт карточек из массива -->
     <template id="element">
+     
       <div class="elements__item">
+        <button class="elements__trash-button" type="button"></button>
         <img class="elements__image" alt="###">
         <div class="elements__container">
           <h3 class="elements__title"></h3>
           <button class="elements__like-button" type="button"></button>
         </div>
       </div>
-    </template>  
+    </template>
 
-    <!-- форма добавления карточки -->
-      <div class="popup popup__card-form">
-        <form class="popup__container">
-          <button class="popup__close" type="button"></button>
-          <h3 class="popup__title">Новое место</h3>
-          <fieldset class="popup__form">
-            <input class="popup__input popup__input_place-name-js" type="text" name="userName" placeholder="Название">
-            <input class="popup__input popup__input_place-link-js" type="text" name="userCareer" placeholder="Ссылка на картинку">
-            <button class="popup__save-button" type="submit">Сохранить</button>
-          </fieldset>
-        </form>
-      </div>
+
 
     <script src="./scripts/index.js" defer></script>
   </body>

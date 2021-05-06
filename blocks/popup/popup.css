@@ -6,5 +6,9 @@
   left: 0;
   z-index: 2;
   position: fixed;
-  display: none;
+  visibility: hidden;
+  display: flex;
+  opacity: 0;
+  transition: visibility .3s, opacity .3s linear;
 }
+
