@@ -77,7 +77,7 @@
     <!-- popup редактирования профиля -->
     <div class="popup popup__profile-form">
       <form class="popup__container" name="profileValues">
-        <button class="popup__close" type="reset"></button>
+        <button class="popup__close popup__close_profile-js" type="reset"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <fieldset class="popup__form">
           <input class="popup__input popup__input_name-js" type="text" name="userName" placeholder="Имя">
@@ -103,9 +103,12 @@
         <!-- popup preview карточки -->
         <div class="popup popup__image-preview">
           <div class="popup__card-wrapper">
+
             <button class="popup__close popup__close_image-js" type="button"></button>
+            <figure class="popup__preview-figure">
             <img class="popup__image" alt="#" src="#">
-            <h2 class="popup__image-title"></h2>
+            <figcaption class="popup__image-title"></figcaption>
+          </figure>
           </div>
         </div>
 
