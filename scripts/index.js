@@ -7,12 +7,12 @@ const profileName = document.querySelector('.profile__name'); // строка "�
 const profileCareer = document.querySelector('.profile__career'); // строка "О себе" в ХТМЛ
 const submitForm = document.querySelector('.popup__container');
 const cardAddButtom = document.querySelector('.profile__add-button');
-const popupCard = document.querySelector('.popup__card-form'); // присвоил весь контейнер
+const popupCard = document.querySelector('.popup_card-form-js'); // присвоил весь контейнер
 const placeName = document.querySelector('.popup__input_place-name-js'); // строка "Название" в Инпуте Попап.
 const placeLink = document.querySelector('.popup__input_place-link-js'); // строка "Ссылка на картинку" в Инпуте Попап.
 const cardCloseButton = popupCard.querySelector('.popup__close_card-js'); // кнопка закрытия попапа добавления карточки.
 const formSaveButton = popupCard.querySelector('.popup__save-button');
-const cardPreview = document.querySelector('.popup__image-preview');
+const cardPreview = document.querySelector('.popup_image-preview');
 const previewCloseButton = document.querySelector('.popup__close_image-js');
 const initialCards = [
   {
