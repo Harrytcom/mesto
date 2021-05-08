@@ -1,3 +1,5 @@
 .popup__close_image-js {
   position: relative;
+  left: -47px;
+  top: -26px;
 }
