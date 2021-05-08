@@ -1,3 +1,4 @@
 .popup__card-wrapper {
     position: relative;
+    display: flex;
 }

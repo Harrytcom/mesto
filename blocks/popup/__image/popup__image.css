@@ -8,4 +8,5 @@
   display: block;
   position: fixed;
   margin: auto;
+  /* grid-area: popup__image; */
 }

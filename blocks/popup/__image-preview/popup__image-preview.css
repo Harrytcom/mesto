@@ -1,6 +1,7 @@
 .popup__image-preview {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 /* .popup_preview-is-active {

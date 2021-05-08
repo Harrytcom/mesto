@@ -1,3 +1,4 @@
 .popup__close_image-js {
     position: relative;
+    /* grid-area: popup__close_image-js; */
 }
