@@ -5,5 +5,8 @@
   font-size: 12px;
   line-height: 15px;
   color: #fff;
-  /* grid-area: popup__image-title; */
+  max-width: 75vw;
+  max-height: 75vw;
+  display: block;
+  margin: auto;
 }
