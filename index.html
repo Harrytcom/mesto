@@ -21,53 +21,7 @@
         <button class="profile__add-button" type="button"></button>
       </section>
 
-      <section class="elements">
-
-
-
-        <!-- <div class="elements__item">
-          <img class="elements__image" src="./images/elements-karachaevo.png" alt="Карачаево-Черкессия">
-          <div class="elements__container">
-            <h3 class="elements__title">Карачаевск</h3>
-            <button class="elements__like-button" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img class="elements__image" src="./images/elements-elbrus.png" alt="Эльбрус">
-          <div class="elements__container">
-            <h3 class="elements__title">Гора Эльбрус</h3>
-            <button class="elements__like-button" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img class="elements__image" src="./images/elements-dombay.png" alt="Домбай">
-          <div class="elements__container">
-            <h3 class="elements__title">Домбай</h3>
-            <button class="elements__like-button" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img class="elements__image" src="./images/elements-elbrus.png" alt="Эльбрус">
-          <div class="elements__container">
-            <h3 class="elements__title">Гора Эльбрус</h3>
-            <button class="elements__like-button" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img class="elements__image" src="./images/elements-dombay.png" alt="Домбай">
-          <div class="elements__container">
-            <h3 class="elements__title">Домбай</h3>
-            <button class="elements__like-button" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img class="elements__image" src="./images/elements-karachaevo.png" alt="Карачаево-Черкессия">
-          <div class="elements__container">
-            <h3 class="elements__title">Карачаево-Черкессия</h3>
-            <button class="elements__like-button" type="button"></button>
-          </div>
-        </div> -->
-      </section>
+      <section class="elements"></section>
 
       <footer class="footer">
         <p class="footer__copyrights">&copy; 2021 Mesto Russia</p>
@@ -75,13 +29,13 @@
     </main>
 
     <!-- popup редактирования профиля -->
-    <div class="popup">
+    <div class="popup popup_profile-form-js">
       <form class="popup__container" name="profileValues">
         <button class="popup__close popup__close_profile-js" type="reset"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <fieldset class="popup__form">
-          <input class="popup__input popup__input_name-js" type="text" name="userName" placeholder="Имя">
-          <input class="popup__input popup__input_career-js" type="text" name="userCareer" placeholder="О себе">
+          <input class="popup__input popup__input_name-js" type="text" name="userName" placeholder="Имя" required>
+          <input class="popup__input popup__input_career-js" type="text" name="userCareer" placeholder="О себе" required>
           <button class="popup__save-button" type="submit">Сохранить</button>
         </fieldset>
       </form>
@@ -89,19 +43,19 @@
 
     <!-- popup добавления карточки -->
     <div class="popup popup_card-form-js">
-      <form class="popup__container popup__card-container">
+      <form class="popup__container popup__card-container" name="cardValues">
         <button class="popup__close popup__close_card-js" type="button"></button>
         <h3 class="popup__title">Новое место</h3>
         <fieldset class="popup__form">
-          <input class="popup__input popup__input_place-name-js" type="text" name="userName" placeholder="Название">
-          <input class="popup__input popup__input_place-link-js" type="text" name="userCareer" placeholder="Ссылка на картинку">
+          <input class="popup__input popup__input_place-name-js" type="text" name="placeName" placeholder="Название" required>
+          <input class="popup__input popup__input_place-link-js" type="text" name="placeLink" placeholder="Ссылка на картинку" required>
           <button class="popup__save-button" type="submit">Сохранить</button>
         </fieldset>
       </form>
     </div>
 
         <!-- popup превью карточки -->
-        <div class="popup popup_image-preview">
+        <div class="popup popup_image-preview-js">
           <div class="popup__card-wrapper">
             <figure class="popup__preview-figure">
               <img class="popup__image" alt="#" src="#">
@@ -110,33 +64,17 @@
             <button class="popup__close popup__close_image-js" type="button"></button>
           </div>
         </div>
-
-         <!-- popup preview карточки новый-->
-         <!-- <div class="card-preview">
-          <div class="card-preview__container">
-            <button class="card-preview__close-button" type="button"></button>
-            <figure class="card-preview__figure">
-            <img class="card-preview__image" alt="#" src="#">
-            <figcaption class="card-preview__title"></figcaption>
-          </figure>
-          </div>
-        </div> -->
-
-
     <!-- импорт карточек из массива -->
     <template id="element">
-     
       <div class="elements__item">
         <button class="elements__trash-button" type="button"></button>
-        <img class="elements__image" alt="###">
+        <img class="elements__image" alt="#">
         <div class="elements__container">
           <h3 class="elements__title"></h3>
           <button class="elements__like-button" type="button"></button>
         </div>
       </div>
     </template>
-
-
 
     <script src="./scripts/index.js" defer></script>
   </body>
