@@ -56,8 +56,8 @@ function openPopup(popup) {
 }
 
 // новые listener'ы открытия попапов
-editProfileButton.addEventListener('click', () => openPopup(popupProfileForm), profileValueToForm());
-cardAddButton.addEventListener('click', () => openPopup(popupCardForm));
+editProfileButton.addEventListener('click', () => { openPopup(popupProfileForm), profileValueToForm() });
+cardAddButton.addEventListener('click', () => { openPopup(popupCardForm), clearForm() });
 
 
 // новые listener'ы закрытия попапов
