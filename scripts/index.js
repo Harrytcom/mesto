@@ -46,10 +46,13 @@ const elementTemplate = element.content; //всё что внутри темпл
 const elementContainer = document.querySelector('.elements'); //контейнер под карточку
 const elementCard = elementTemplate.querySelector('.elements__item');
 const cardContainer = document.querySelector('.popup__card-container');
+
 cardContainer.addEventListener('submit', function(evt) {
 evt.preventDefault();
+
 createCard({name: placeName.value, link: placeLink.value});
-// formSaveButton.addEventListener ('click', closePopup(popupCardForm));
+
+
 closePopup(popupCardForm);
 })
 
@@ -117,12 +120,22 @@ function createCard({name, link}) {  //создаю карточку и клад
   cardLikeButton.addEventListener('click', function() { // like для карточки
     cardLikeButton.classList.toggle('elements__like-button_is-active');
   })
-  elementContainer.prepend(elementCardClone);
+  // elementContainer.append(elementCardClone); //это надо убрать
+  return elementCardClone; // вернул объект
 }
 
-initialCards.forEach(function(cardsImport) { //забор значений карточек из массива
-  createCard({name: cardsImport.name, link: cardsImport.link});
+initialCards.forEach(function(cardsImport) { 
+  let cardItem = createCard({name: cardsImport.name, link: cardsImport.link});
+  // createCard({name: cardsImport.name, link: cardsImport.link});
+  prependCard(cardItem);
 });
+
+function prependCard(card) {
+  elementContainer.prepend(card);
+}
+
+
+
 
 
 
