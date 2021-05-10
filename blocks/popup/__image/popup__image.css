@@ -5,3 +5,10 @@
   margin: auto;
   margin-bottom: 10px;
 }
+
+
+@media (min-width: 1100px) {
+  .popup__image {
+    max-width: 65vw;
+    max-height: 65vw;
+  }
