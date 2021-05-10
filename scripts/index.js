@@ -1,5 +1,4 @@
 const editProfileButton = document.querySelector('.profile__edit-button'); // выбрал кнопку Редактировать
-// const popup = document.querySelector('.popup'); // присвоил весь контейнер
 const popupProfileForm = document.querySelector('.popup_profile-form-js'); // присвоил весь контейнер
 const closeEditFormButton = popupProfileForm.querySelector('.popup__close_profile-js'); // присвоил кнопке Закрыть
 const nameInput = popupProfileForm.querySelector('.popup__input_name-js'); // строка "Имя" в Инпуте Попап.
@@ -47,15 +46,6 @@ const elementContainer = document.querySelector('.elements'); //контейне
 const elementCard = elementTemplate.querySelector('.elements__item');
 const cardContainer = document.querySelector('.popup__card-container');
 
-cardContainer.addEventListener('submit', function(evt) {
-evt.preventDefault();
-
-createCard({name: placeName.value, link: placeLink.value});
-
-
-closePopup(popupCardForm);
-})
-
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
 }
@@ -63,12 +53,17 @@ function openPopup(popup) {
 // новые listener'ы открытия попапов
 editProfileButton.addEventListener('click', () => { openPopup(popupProfileForm), profileValueToForm() });
 cardAddButton.addEventListener('click', () => { openPopup(popupCardForm), clearForm() });
-
-
 // новые listener'ы закрытия попапов
 closeEditFormButton.addEventListener('click', () => closePopup(popupProfileForm));
 cardCloseButton.addEventListener('click', () => closePopup(popupCardForm));
 previewCloseButton.addEventListener('click', () => closePopup(popupCardPreview));
+submitForm.addEventListener('submit', submitFormHandler);
+cardContainer.addEventListener('submit', function(evt) {
+  evt.preventDefault();
+  let cardItem = createCard({name: placeName.value, link: placeLink.value});
+  prependCard(cardItem);
+  closePopup(popupCardForm);
+  })
 
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
@@ -95,20 +90,15 @@ function submitFormHandler (evt) {  // функция которая позво�
   closePopup(popupProfileForm);
 }
 
-submitForm.addEventListener('submit', submitFormHandler);
-
-
-
-
-function createCard({name, link}) {  //создаю карточку и кладу
+function createCard({name, link}) {  //создаю карточку
   const elementCardClone = elementCard.cloneNode(true);   //клонирование блока с карточкой
   const cardImage = elementCardClone.querySelector('.elements__image'); //присвоил клону картинки
   const cardName = elementCardClone.querySelector('.elements__title'); //присвоил клону строки с именем
   const cardDeleteButton = elementCardClone.querySelector('.elements__trash-button'); //присвоил клону корзины
   const cardLikeButton = elementCardClone.querySelector('.elements__like-button'); //присвоил клону лайка
-  cardImage.src = link; //беру значение link
-  cardName.textContent = name; //беру значение name
-  cardImage.alt = 'На фото ' + name; //беру значение alt
+  cardImage.src = link; // беру значение link
+  cardName.textContent = name; // беру значение name
+  cardImage.alt = 'На фото ' + name; // беру значение alt
   cardDeleteButton.addEventListener('click', function(evt) { //EL для кнопки удаления
     evt.target.closest('.elements__item').remove();
   })
@@ -120,19 +110,17 @@ function createCard({name, link}) {  //создаю карточку и клад
   cardLikeButton.addEventListener('click', function() { // like для карточки
     cardLikeButton.classList.toggle('elements__like-button_is-active');
   })
-  // elementContainer.append(elementCardClone); //это надо убрать
   return elementCardClone; // вернул объект
 }
-
-initialCards.forEach(function(cardsImport) { 
-  let cardItem = createCard({name: cardsImport.name, link: cardsImport.link});
-  // createCard({name: cardsImport.name, link: cardsImport.link});
-  prependCard(cardItem);
-});
 
 function prependCard(card) {
   elementContainer.prepend(card);
 }
+
+initialCards.forEach(function(cardsImport) { 
+  let cardItem = createCard({name: cardsImport.name, link: cardsImport.link});
+  prependCard(cardItem);
+});
 
 
 
