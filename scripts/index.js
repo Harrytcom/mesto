@@ -60,7 +60,7 @@ previewCloseButton.addEventListener('click', () => closePopup(popupCardPreview))
 submitForm.addEventListener('submit', submitFormHandler);
 cardContainer.addEventListener('submit', function(evt) {
   evt.preventDefault();
-  let cardItem = createCard({name: placeName.value, link: placeLink.value});
+  const cardItem = createCard({name: placeName.value, link: placeLink.value});
   prependCard(cardItem);
   closePopup(popupCardForm);
   })
@@ -118,7 +118,7 @@ function prependCard(card) {
 }
 
 initialCards.forEach(function(cardsImport) { 
-  let cardItem = createCard({name: cardsImport.name, link: cardsImport.link});
+  const cardItem = createCard({name: cardsImport.name, link: cardsImport.link});
   prependCard(cardItem);
 });
 
