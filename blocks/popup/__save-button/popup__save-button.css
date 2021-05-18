@@ -19,8 +19,14 @@
 }
 
 .popup__save-button:hover {
-  opacity: 0.8;
+  opacity: .8;
 }
+
+.popup__save-button:disabled {
+  cursor: not-allowed;
+  opacity: .2;
+}
+
 
 @media (min-width: 768px) {
   .popup__save-button {

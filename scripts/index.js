@@ -122,9 +122,4 @@ initialCards.forEach(function(cardsImport) {
   prependCard(cardItem);
 });
 
-
-
-
-
-
-
+enableValidation();
