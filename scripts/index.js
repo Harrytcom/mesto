@@ -1,3 +1,4 @@
+const popup = document.querySelectorAll('.popup');
 const editProfileButton = document.querySelector('.profile__edit-button'); // выбрал кнопку Редактировать
 const popupProfileForm = document.querySelector('.popup_profile-form-js'); // присвоил весь контейнер
 const closeEditFormButton = popupProfileForm.querySelector('.popup__close_profile-js'); // присвоил кнопке Закрыть
@@ -46,9 +47,6 @@ const elementContainer = document.querySelector('.elements'); //контейне
 const elementCard = elementTemplate.querySelector('.elements__item');
 const cardContainer = document.querySelector('.popup__card-container');
 
-function openPopup(popup) {
-  popup.classList.add('popup_is-opened');
-}
 
 // новые listener'ы открытия попапов
 editProfileButton.addEventListener('click', () => { openPopup(popupProfileForm), profileValueToForm() });
@@ -65,8 +63,35 @@ cardContainer.addEventListener('submit', function(evt) {
   closePopup(popupCardForm);
   })
 
+  // закрытие попапа клавишей Искейп
+  // function addPopupEscapeListener(popup) {
+  //   popup.forEach( popup => {
+  //     popup.addEventListener('keydown', (evt) => {
+  //       if (evt.key === 'Escape') {
+  //       closePopup(popup);
+  //       return addPopupEscapeListener
+  //     }
+  //       })
+  //   });
+  // }
+  // console.log(addPopupEscapeListener)
+
+function openPopup(popup) {
+  popup.classList.add('popup_is-opened');
+
+  document.addEventListener('keydown', (evt) => {
+    console.log(evt.key);
+    if (evt.key === 'Escape') {
+      console.log('123')
+      closePopup(popup);
+    }
+  })
+  
+}  
+
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
+  document.removeEventListener('keydown', closePopup);
 }
 
 function openCardPreview() {
@@ -120,6 +145,23 @@ function prependCard(card) {
 initialCards.forEach(function(cardsImport) { 
   const cardItem = createCard({name: cardsImport.name, link: cardsImport.link});
   prependCard(cardItem);
+});
+
+const config = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inputErrorClass: '.popup__input_type_error',
+  errorClass: '.popup__input-error_is-active',
+}
+
+// закрытие попапа кликом на оверлей
+popup.forEach( popup => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target === evt.currentTarget) {
+    closePopup(popup);
+  }
+    })
 });
 
 enableValidation();

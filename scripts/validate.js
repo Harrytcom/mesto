@@ -7,7 +7,6 @@ const hideInputError = (formElement, inputElement) => {
     errorElement.textContent = '';
 }
 
-
 const showInputError = (formElement, inputElement) => {
     // показываем ошибку
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`)
@@ -15,9 +14,6 @@ const showInputError = (formElement, inputElement) => {
     errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add('popup__input-error_is-active');
 }
-
-
-
 
 const checkInputValidity = (formElement, inputElement) => {
 //   проверить валидность инпута
@@ -65,7 +61,6 @@ inputList.forEach((inputElement) => {
    toggleButtonState(buttonElement, inputList)
 
 };
-
 
 const enableValidation = () => {
     //найти все формы на странице

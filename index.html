@@ -49,9 +49,9 @@
         <button class="popup__close popup__close_card-js" type="button"></button>
         <h3 class="popup__title">Новое место</h3>
         <fieldset class="popup__form">
-          <input class="popup__input popup__input_place-name-js" id="placeName" type="text" name="placeName" placeholder="Название" required>
+          <input class="popup__input popup__input_place-name-js" id="placeName" type="text" name="placeName" placeholder="Название" minlength="2" minlength="30" required>
           <span class="popup__input-error" id="placeName-error"></span>
-          <input class="popup__input popup__input_place-link-js" id="placeLink" type="text" name="placeLink" placeholder="Ссылка на картинку" required>
+          <input class="popup__input popup__input_place-link-js" id="placeLink" type = "url" name="placeLink" placeholder="Ссылка на картинку" required>
           <span class="popup__input-error" id="placeLink-error"></span>
           <button class="popup__save-button" type="submit">Сохранить</button>
         </fieldset>
