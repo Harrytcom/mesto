@@ -138,12 +138,12 @@ const config = {
   formSelector: '.popup__container',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
-  inputErrorClass: '.popup__input_type_error',
-  errorClass: '.popup__input-error_is-active',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_is-active',
 }
 
 // закрытие попапа кликом на оверлей
-popup.forEach( popup => {
+popup.forEach(popup => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target === evt.currentTarget) {
     closePopup(popup);
