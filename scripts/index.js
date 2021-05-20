@@ -47,11 +47,11 @@ const elementContainer = document.querySelector('.elements'); //контейне
 const elementCard = elementTemplate.querySelector('.elements__item');
 const cardContainer = document.querySelector('.popup__card-container');
 
-
-// новые listener'ы открытия попапов
+// listener'ы открытия попапов
 editProfileButton.addEventListener('click', () => { openPopup(popupProfileForm), profileValueToForm() });
 cardAddButton.addEventListener('click', () => { openPopup(popupCardForm), clearForm() });
-// новые listener'ы закрытия попапов
+
+// listener'ы закрытия попапов
 closeEditFormButton.addEventListener('click', () => closePopup(popupProfileForm));
 cardCloseButton.addEventListener('click', () => closePopup(popupCardForm));
 previewCloseButton.addEventListener('click', () => closePopup(popupCardPreview));
@@ -63,35 +63,22 @@ cardContainer.addEventListener('submit', function(evt) {
   closePopup(popupCardForm);
   })
 
-  // закрытие попапа клавишей Искейп
-  // function addPopupEscapeListener(popup) {
-  //   popup.forEach( popup => {
-  //     popup.addEventListener('keydown', (evt) => {
-  //       if (evt.key === 'Escape') {
-  //       closePopup(popup);
-  //       return addPopupEscapeListener
-  //     }
-  //       })
-  //   });
-  // }
-  // console.log(addPopupEscapeListener)
+function addPopupEscapeListener(evt) {
+  const popupIsOpened = document.querySelector('.popup_is-opened');
+  if (evt.key === 'Escape') {
+  console.log('обработчик Escape включен')
+  closePopup(popupIsOpened);
+  }
+}
 
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
-
-  document.addEventListener('keydown', (evt) => {
-    console.log(evt.key);
-    if (evt.key === 'Escape') {
-      console.log('123')
-      closePopup(popup);
-    }
-  })
-  
-}  
+  document.addEventListener('keydown', addPopupEscapeListener);
+};
 
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
-  document.removeEventListener('keydown', closePopup);
+  document.removeEventListener('keydown', addPopupEscapeListener);
 }
 
 function openCardPreview() {
@@ -164,4 +151,4 @@ popup.forEach( popup => {
     })
 });
 
-enableValidation();
+enableValidation(config);

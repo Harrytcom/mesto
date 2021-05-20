@@ -24,7 +24,10 @@
 
 .popup__save-button:disabled {
   cursor: not-allowed;
+  background: white;
   opacity: .2;
+  border: 1px solid #000;
+  color: #000;
 }
 
 
