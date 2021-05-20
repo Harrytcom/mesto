@@ -12,7 +12,6 @@ const popupCardForm = document.querySelector('.popup_card-form-js');
 const placeName = document.querySelector('.popup__input_place-name-js'); // строка "Название" в Инпуте Попап.
 const placeLink = document.querySelector('.popup__input_place-link-js'); // строка "Ссылка на картинку" в Инпуте Попап.
 const cardCloseButton = popupCardForm.querySelector('.popup__close_card-js'); // кнопка закрытия попапа добавления карточки.
-const formSaveButton = popupCardForm.querySelector('.popup__save-button');
 const popupCardPreview = document.querySelector('.popup_image-preview-js');
 const previewCloseButton = document.querySelector('.popup__close_image-js');
 const initialCards = [
@@ -61,12 +60,12 @@ cardContainer.addEventListener('submit', function(evt) {
   const cardItem = createCard({name: placeName.value, link: placeLink.value});
   prependCard(cardItem);
   closePopup(popupCardForm);
-  })
+  });
 
 function addPopupEscapeListener(evt) {
   const popupIsOpened = document.querySelector('.popup_is-opened');
   if (evt.key === 'Escape') {
-  console.log('обработчик Escape включен')
+  console.log('обработчик Escape включен');
   closePopup(popupIsOpened);
   }
 }
@@ -74,7 +73,7 @@ function addPopupEscapeListener(evt) {
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
   document.addEventListener('keydown', addPopupEscapeListener);
-};
+}
 
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
@@ -113,15 +112,15 @@ function createCard({name, link}) {  //создаю карточку
   cardImage.alt = 'На фото ' + name; // беру значение alt
   cardDeleteButton.addEventListener('click', function(evt) { //EL для кнопки удаления
     evt.target.closest('.elements__item').remove();
-  })
+  });
   cardImage.addEventListener('click', function placePreview() { //EL для превью карточки
     openCardPreview();
     popupCardPreview.querySelector('.popup__image').src = cardImage.src; //беру значение src
     popupCardPreview.querySelector('.popup__image-title').textContent= cardName.textContent; //беру значение имени картинки
-  })
+  });
   cardLikeButton.addEventListener('click', function() { // like для карточки
     cardLikeButton.classList.toggle('elements__like-button_is-active');
-  })
+  });
   return elementCardClone; // вернул объект
 }
 
@@ -140,7 +139,7 @@ const config = {
   submitButtonSelector: '.popup__save-button',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_is-active',
-}
+};
 
 // закрытие попапа кликом на оверлей
 popup.forEach(popup => {
@@ -148,7 +147,7 @@ popup.forEach(popup => {
     if (evt.target === evt.currentTarget) {
     closePopup(popup);
   }
-    })
+    });
 });
 
 enableValidation(config);
