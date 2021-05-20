@@ -45,6 +45,13 @@ const elementTemplate = element.content; //всё что внутри темпл
 const elementContainer = document.querySelector('.elements'); //контейнер под карточку
 const elementCard = elementTemplate.querySelector('.elements__item');
 const cardContainer = document.querySelector('.popup__card-container');
+const config = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_is-active',
+};
 
 // listener'ы открытия попапов
 editProfileButton.addEventListener('click', () => { openPopup(popupProfileForm), profileValueToForm() });
@@ -132,14 +139,6 @@ initialCards.forEach(function(cardsImport) {
   const cardItem = createCard({name: cardsImport.name, link: cardsImport.link});
   prependCard(cardItem);
 });
-
-const config = {
-  formSelector: '.popup__container',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_is-active',
-};
 
 // закрытие попапа кликом на оверлей
 popup.forEach(popup => {
