@@ -1,4 +1,4 @@
-const popup = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup');
 const editProfileButton = document.querySelector('.profile__edit-button'); // выбрал кнопку Редактировать
 const popupProfileForm = document.querySelector('.popup_profile-form-js'); // присвоил весь контейнер
 const closeEditFormButton = popupProfileForm.querySelector('.popup__close_profile-js'); // присвоил кнопке Закрыть
@@ -53,6 +53,11 @@ const config = {
   errorClass: 'popup__input-error_is-active',
 };
 
+const updateInputValue = (inputElement, value) => {
+  inputElement.value = value;
+  inputElement.dispatchEvent(new Event('input'));
+};
+
 // listener'ы открытия попапов
 editProfileButton.addEventListener('click', () => { openPopup(popupProfileForm), profileValueToForm() });
 cardAddButton.addEventListener('click', () => { openPopup(popupCardForm), clearForm() });
@@ -69,22 +74,21 @@ cardContainer.addEventListener('submit', function(evt) {
   closePopup(popupCardForm);
   });
 
-function addPopupEscapeListener(evt) {
-  const popupIsOpened = document.querySelector('.popup_is-opened');
+function escapeListener(evt) {
   if (evt.key === 'Escape') {
-  console.log('обработчик Escape включен');
+  const popupIsOpened = document.querySelector('.popup_is-opened');
   closePopup(popupIsOpened);
   }
 }
 
-function openPopup(popup) {
-  popup.classList.add('popup_is-opened');
-  document.addEventListener('keydown', addPopupEscapeListener);
+function openPopup(popups) {
+  popups.classList.add('popup_is-opened');
+  document.addEventListener('keydown', escapeListener);
 }
 
-function closePopup(popup) {
-  popup.classList.remove('popup_is-opened');
-  document.removeEventListener('keydown', addPopupEscapeListener);
+function closePopup(popups) {
+  popups.classList.remove('popup_is-opened');
+  document.removeEventListener('keydown', escapeListener);
 }
 
 function openCardPreview() {
@@ -141,10 +145,10 @@ initialCards.forEach(function(cardsImport) {
 });
 
 // закрытие попапа кликом на оверлей
-popup.forEach(popup => {
-  popup.addEventListener('mousedown', (evt) => {
+popups.forEach(popups => {
+  popups.addEventListener('mousedown', (evt) => {
     if (evt.target === evt.currentTarget) {
-    closePopup(popup);
+    closePopup(popups);
   }
     });
 });

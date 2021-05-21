@@ -50,7 +50,7 @@ inputList.forEach((inputElement) => {  //  найти все кнопки саб
     });
 });
 
-   toggleButtonState(buttonElement, inputList);  // установить значение для кнопки(зависит от валидности формы)
+    toggleButtonState(buttonElement, inputList);  // установить значение для кнопки(зависит от валидности формы)
 
 };
 
@@ -61,3 +61,4 @@ const enableValidation = (config) => {
       setEventListeners(formElement, restConfig);  // для этого перебрать массив
     });
 };
+
