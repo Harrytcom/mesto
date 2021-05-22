@@ -79,7 +79,7 @@ function escapeListener(evt) {
 function openPopup(popups) {
   popups.classList.add('popup_is-opened');
   document.addEventListener('keydown', escapeListener);
-  updateInputValue(placeName, placeLink, profileName, profileCareer);
+  updateInputValue(placeName, placeLink);
 }
 
 function closePopup(popups) {
