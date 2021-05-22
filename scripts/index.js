@@ -109,6 +109,7 @@ function submitFormHandler (evt) {  // функция которая позво�
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileCareer.textContent = jobInput.value;
+  // placeName.dispatchEvent(new Event('input'));
   closePopup(popupProfileForm);
 }
 
@@ -127,7 +128,7 @@ function createCard({name, link}) {  //создаю карточку
   cardImage.addEventListener('click', function placePreview() { //EL для превью карточки
     openCardPreview();
     popupCardPreview.querySelector('.popup__image').src = cardImage.src; //беру значение src
-    popupCardPreview.querySelector('.popup__image-title').textContent= cardName.textContent; //беру значение имени картинки
+    popupCardPreview.querySelector('.popup__image-title').textContent = cardName.textContent; //беру значение имени картинки
   });
   cardLikeButton.addEventListener('click', function() { // like для карточки
     cardLikeButton.classList.toggle('elements__like-button_is-active');
@@ -139,7 +140,7 @@ function prependCard(card) {
   elementContainer.prepend(card);
 }
 
-initialCards.forEach(function(cardsImport) { 
+initialCards.forEach(function(cardsImport) {
   const cardItem = createCard({name: cardsImport.name, link: cardsImport.link});
   prependCard(cardItem);
 });

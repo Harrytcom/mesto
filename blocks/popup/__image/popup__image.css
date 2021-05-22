@@ -6,24 +6,37 @@
   margin-bottom: 10px;
 }
 
+/* можно ли выставить что-нибудь вроде 75vw - 15%, чтобы не делать такое количество брейк-поинтов? 
+   не смог найти толковую информацию, как лучше это реализовать */
 
-@media (min-width: 1100px) {
+@media (min-width: 1000px) {
   .popup__image {
-    max-width: 65vw;
+    max-height: 70vw;
+  }
+} 
+
+
+ @media (min-width: 1100px) {
+  .popup__image {
     max-height: 65vw;
+  }
+} 
+
+@media (min-width: 1200px) {
+  .popup__image {
+    max-height: 55vw;
   }
 } 
 
 @media (min-width: 1400px) {
   .popup__image {
-    max-width: 55vw;
-    max-height: 55vw;
+    max-height: 48vw;
   }
 } 
 
 @media (min-width: 1550px) {
   .popup__image {
-    max-width: 45vw;
     max-height: 45vw;
   }
 }
+

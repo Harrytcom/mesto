@@ -14,7 +14,7 @@ const showInputError = (formElement, inputElement, config) => {  // показы
     errorElement.classList.add(errorClass);
 };
 
-const checkInputValidity = (formElement, inputElement, config) => {  //   проверить валидность инпута
+const checkInputValidity = (formElement, inputElement, config) => { //   проверить валидность инпута
   if (inputElement.validity.valid) {
     hideInputError(formElement, inputElement, config); // если валидный, то прячем ошибку
 } else {
@@ -26,11 +26,13 @@ const hasInvalidInput = (inputList) => {
    return inputList.some(inputElement => !inputElement.validity.valid);
 };
 
-const toggleButtonState = (buttonElement, inputList) => {  // если форма валидная то кнопка активна. Иначе - не активна.
+const toggleButtonState = (buttonElement, inputList) => { // если форма валидная то кнопка активна. Иначе - не активна.
+  console.log(toggleButtonState);
+  
     if (hasInvalidInput(inputList)) {
       buttonElement.disabled = true; // делаю кнопку не активной
 } else {
-      buttonElement.disabled = false; // делаю кнопку активной 
+      buttonElement.disabled = false; // делаю кнопку активной
     }
 };
 
@@ -43,9 +45,9 @@ const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));  // найти все инпуты внутри форм
   const buttonElement = formElement.querySelector(submitButtonSelector); // найти кнопку Submit
 
-inputList.forEach((inputElement) => {  //  найти все кнопки сабмит
+inputList.forEach((inputElement) => {  // найти все кнопки сабмит
     inputElement.addEventListener('input', () => {
-      checkInputValidity(formElement, inputElement, restConfig);  //проверить валидность инпута
+      checkInputValidity(formElement, inputElement, restConfig);  // проверить валидность инпута
       toggleButtonState(buttonElement, inputList);
     });
 });
@@ -56,7 +58,7 @@ inputList.forEach((inputElement) => {  //  найти все кнопки саб
 
 const enableValidation = (config) => {
   const { formSelector, ...restConfig } = config;
-  const formList = Array.from(document.querySelectorAll(formSelector));  //найти все формы на странице
+  const formList = Array.from(document.querySelectorAll(formSelector));  // найти все формы на странице
     formList.forEach((formElement) => {   // поставить Ивент ЛИсенеров на каждую форму (на инпут и на кнопки) (включить валидацию на каждую форму)
       setEventListeners(formElement, restConfig);  // для этого перебрать массив
     });
