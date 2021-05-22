@@ -53,11 +53,6 @@ const config = {
   errorClass: 'popup__input-error_is-active',
 };
 
-const updateInputValue = (inputElement, value) => {
-  inputElement.value = value;
-  inputElement.dispatchEvent(new Event('input'));
-};
-
 // listener'ы открытия попапов
 editProfileButton.addEventListener('click', () => { openPopup(popupProfileForm), profileValueToForm() });
 cardAddButton.addEventListener('click', () => { openPopup(popupCardForm), clearForm() });
@@ -84,6 +79,7 @@ function escapeListener(evt) {
 function openPopup(popups) {
   popups.classList.add('popup_is-opened');
   document.addEventListener('keydown', escapeListener);
+  updateInputValue(placeName, placeLink, profileName, profileCareer);
 }
 
 function closePopup(popups) {
@@ -109,7 +105,6 @@ function submitFormHandler (evt) {  // функция которая позво�
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileCareer.textContent = jobInput.value;
-  // placeName.dispatchEvent(new Event('input'));
   closePopup(popupProfileForm);
 }
 

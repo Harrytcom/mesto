@@ -14,7 +14,7 @@ const showInputError = (formElement, inputElement, config) => {  // показы
     errorElement.classList.add(errorClass);
 };
 
-const checkInputValidity = (formElement, inputElement, config) => { //   проверить валидность инпута
+const checkInputValidity = (formElement, inputElement, config) => { //   проверить валидность инпута. A!!!
   if (inputElement.validity.valid) {
     hideInputError(formElement, inputElement, config); // если валидный, то прячем ошибку
 } else {
@@ -26,15 +26,14 @@ const hasInvalidInput = (inputList) => {
    return inputList.some(inputElement => !inputElement.validity.valid);
 };
 
-const toggleButtonState = (buttonElement, inputList) => { // если форма валидная то кнопка активна. Иначе - не активна.
-  console.log(toggleButtonState);
-  
+const toggleButtonState = (buttonElement, inputList) => { // если форма валидная то кнопка активна. Иначе - не активна. B!!!
     if (hasInvalidInput(inputList)) {
       buttonElement.disabled = true; // делаю кнопку не активной
 } else {
       buttonElement.disabled = false; // делаю кнопку активной
     }
 };
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const setEventListeners = (formElement, config) => {
     const { inputSelector, submitButtonSelector, ...restConfig } = config;
@@ -56,10 +55,17 @@ inputList.forEach((inputElement) => {  // найти все кнопки саб�
 
 };
 
+const updateInputValue = (placeName, placeLink) => { // принудительно вызываю событие 'input'
+  placeName.value = '';
+  placeName.dispatchEvent(new Event('input'));
+  placeLink.value = '';
+  placeLink.dispatchEvent(new Event('input'));
+};
+
 const enableValidation = (config) => {
   const { formSelector, ...restConfig } = config;
   const formList = Array.from(document.querySelectorAll(formSelector));  // найти все формы на странице
-    formList.forEach((formElement) => {   // поставить Ивент ЛИсенеров на каждую форму (на инпут и на кнопки) (включить валидацию на каждую форму)
+    formList.forEach((formElement) => {   // поставить Event Listener на каждую форму (на инпут и на кнопки) (включить валидацию на каждую форму)
       setEventListeners(formElement, restConfig);  // для этого перебрать массив
     });
 };
