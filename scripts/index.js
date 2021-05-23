@@ -55,7 +55,7 @@ const config = {
 
 // listener'ы открытия попапов
 editProfileButton.addEventListener('click', () => { openPopup(popupProfileForm), profileValueToForm() });
-cardAddButton.addEventListener('click', () => { openPopup(popupCardForm), clearForm() });
+cardAddButton.addEventListener('click', () => { openPopup(popupCardForm), clearForm(), updateInputValue(placeName, placeLink) });
 
 // listener'ы закрытия попапов
 closeEditFormButton.addEventListener('click', () => closePopup(popupProfileForm));
@@ -79,7 +79,6 @@ function escapeListener(evt) {
 function openPopup(popups) {
   popups.classList.add('popup_is-opened');
   document.addEventListener('keydown', escapeListener);
-  updateInputValue(placeName, placeLink);
 }
 
 function closePopup(popups) {
