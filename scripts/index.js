@@ -100,7 +100,7 @@ function profileValueToForm() {  // функция которая позволя
     jobInput.value = profileCareer.textContent;
 }
 
-function submitFormHandler (evt) {  // функция которая позволяет забирать значения из Инпута в ХТМЛ.
+function submitFormHandler (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileCareer.textContent = jobInput.value;
@@ -108,7 +108,7 @@ function submitFormHandler (evt) {  // функция которая позво�
 }
 
 function createCard({name, link}) {  //создаю карточку
-  const elementCardClone = elementCard.cloneNode(true);   //клонирование блока с карточкой
+  const elementCardClone = elementCard.cloneNode(true);  //клонирование блока с карточкой
   const cardImage = elementCardClone.querySelector('.elements__image'); //присвоил клону картинки
   const cardName = elementCardClone.querySelector('.elements__title'); //присвоил клону строки с именем
   const cardDeleteButton = elementCardClone.querySelector('.elements__trash-button'); //присвоил клону корзины
@@ -149,3 +149,67 @@ popups.forEach(popups => {
 });
 
 enableValidation(config);
+
+/////////////////////////////////////////////////////
+
+
+class Card {
+
+  constructor(title, image, alt){
+    this._title = title;
+    this._image = image;
+    this._alt = alt;
+  }
+
+  _getTemplate() {
+    const placeCard = document
+    .querySelector('.element')
+    .content.querySelector('.elements__item')
+    .cloneNode(true);
+
+    return placeCard;
+  }
+
+  generateCard() {  //готовит карточку к публикации
+    this._element = this._getTemplate();
+    this._setEventListeners();
+    
+    this._element.querySelector('.elements__image').src = this._image;
+    this._element.querySelector('.elements__title').textContent = this._title;
+    this._element.querySelector('.elements__image').alt = 'На фото ' + this._title;
+
+    return this._element;
+  }
+
+  _setEventListeners() {
+    this._element.querySelector('.elements__like-button').addEventListener('click', () => {
+      this._likeHandler(); 
+    });
+
+    this._element.querySelector('.elements__trash-button').addEventListener('click', () => {
+      this._deleteHandler();
+  });
+
+  }
+
+  _likeHandler() {
+    this._element.querySelector('.elements__like-button').classList.toggle('elements__like-button_is-active');
+  }
+
+  _deleteHandler() {
+    console.log('123')
+    this._element.querySelector('.elements__item').remove; //TODO не удаляет карточку. сам клик отрабатывает. !!!
+  }
+
+}
+
+
+initialCards.forEach((item) => {
+  // Создадим экземпляр карточки
+  const card = new Card(item.name, item.link);
+  // Создаём карточку и возвращаем наружу
+  const cardElement = card.generateCard();
+
+  // Добавляем в DOM
+  elementContainer.prepend(cardElement);
+}); 
