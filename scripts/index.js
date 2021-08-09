@@ -56,7 +56,6 @@ const config = {
 };
 
 
-
 // listener'ы открытия попапов
 editProfileButton.addEventListener('click', () => { openPopup(popupProfileForm), profileValueToForm() });
 cardAddButton.addEventListener('click', () => { openPopup(popupCardForm), clearForm(), updateInputValue(placeName, placeLink) });
@@ -99,7 +98,7 @@ function clearForm() {  // функция очистки инпутов попа
     placeLink.value = '';
 }
 
-function profileValueToForm() {  // функция которая позволяет забирать значения из HTML в Form.
+function profileValueToForm() {  // функция, которая позволяет забирать значения из HTML в Form.
     nameInput.value = profileName.textContent;
     jobInput.value = profileCareer.textContent;
 }
@@ -160,17 +159,20 @@ function submitFormHandler (evt) {
 
 /////////////////////////////////////////////////////
 
-// import {_cardPreviewHandler} from '../utils/utils.js';
-
 class Card {
 
-  constructor(title, image, alt){
+  _title
+  _image
+  _alt
+  
+
+  constructor(title, image, alt) {
     this._title = title;
     this._image = image;
     this._alt = alt;
   }
 
-  _getTemplate() {
+  _getTemplate() {  // забираю темплейт
     const placeCard = document
     .querySelector('.element')
     .content.querySelector('.elements__item')
@@ -179,18 +181,7 @@ class Card {
     return placeCard;
   }
 
-  generateCard() {  //готовит карточку к публикации
-    this._element = this._getTemplate();
-    this._setEventListeners();
-    
-    this._element.querySelector('.elements__image').src = this._image;
-    this._element.querySelector('.elements__title').textContent = this._title;
-    this._element.querySelector('.elements__image').alt = 'На фото ' + this._title;
-
-    return this._element;
-  }
-
-  _setEventListeners() {
+  _setEventListeners() {  // устанавливают слушателей событий
     this._element.querySelector('.elements__like-button').addEventListener('click', () => {
       this._likeHandler(); 
     });
@@ -214,6 +205,20 @@ class Card {
     this._element.remove();
   }
 
+  generateCard() {  // содержит один публичный метод, который возвращает полностью работоспособный и наполненный данными элемент карточки.
+    this._element = this._getTemplate();
+    this._setEventListeners();
+    this._element.querySelector('.elements__image').src = this._image; // принимает в конструктор её данные
+    this._element.querySelector('.elements__title').textContent = this._title;
+    this._element.querySelector('.elements__image').alt = 'На фото ' + this._title;
+
+    return this._element;
+  }
+
+
+
+  
+
   // function processShowPhotoPopup(placePhoto, attributes = [{src: ''}, {alt: ''}], photoDescription = '') {
   //   placePhoto.addEventListener('click', () => {
   //     setElementAttributes(popupPhoto, attributes);
@@ -226,7 +231,8 @@ class Card {
 
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
-  const card = new Card(item.name, item.link);
+  const card = new Card(item.name, item.link); // item.alt???
+
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard();
 
