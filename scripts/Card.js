@@ -1,5 +1,5 @@
 import { openCardPreview } from '../utils/utils.js';
-import { element, cardImage, cardName, cardDeleteButton, cardLikeButton, initialCards, elementContainer, popupCardPreview, elementCardClone } from './index.js';
+import { element, cardImage, cardName, cardDeleteButton, cardLikeButton, initialCards, elementContainer, popupCardPreview, elementCardClone, cardContainer } from './index.js';
 
 
 class Card {
@@ -79,7 +79,18 @@ class Card {
       this._cardDeleteButton.addEventListener('click', (evt) => { //EL для кнопки удаления
         evt.target.closest('.elements__item').remove();
       });
-    
+
+      // initialCards.forEach(function(cardsImport) {
+      //   const cardItem = _createCard({name: cardsImport.name, link: cardsImport.link});
+      //   prependCard(cardItem);
+      // });
+      
+      // cardContainer.addEventListener('submit', function(evt) {
+      //   evt.preventDefault();
+      //   const cardItem = this._createCard({name: placeName.value, link: placeLink.value});
+      //   prependCard(cardItem);
+      //   closePopup(popupCardForm);
+      // })
     
       this._cardImage.addEventListener('click', placePreview = () => { //EL для превью карточки
         openCardPreview();
@@ -88,8 +99,8 @@ class Card {
       });
 
     
-      this.cardLikeButton.addEventListener('click', () => { // like для карточки
-        this.cardLikeButton.classList.toggle('elements__like-button_is-active');
+      this._cardLikeButton.addEventListener('click', () => { // like для карточки
+        this._cardLikeButton.classList.toggle('elements__like-button_is-active');
       });
 
       return elementCardClone; // вернул объект
@@ -103,6 +114,8 @@ class Card {
     
 }
 
+
+
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
   const card = new Card(item.name, item.link);
@@ -113,3 +126,4 @@ initialCards.forEach((item) => {
   // Добавляем в DOM
   elementContainer.prepend(cardElement);
 });
+
