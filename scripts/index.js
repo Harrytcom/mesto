@@ -48,13 +48,12 @@ const elementContainer = document.querySelector('.elements'); //контейне
 const elementCard = elementTemplate.querySelector('.elements__item');
 const cardContainer = document.querySelector('.popup__card-container');
 const config = {
-  formElement: '.popup__container', // добавил
-  formSelector: '.popup__container', 
+  formElement: '.popup__container',
+  formSelector: '.popup__container',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_is-active',
-
 };
 
 const updateInputValue = (placeName, placeLink) => { // принудительно вызываю событие 'input'

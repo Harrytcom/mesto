@@ -107,6 +107,7 @@ class FormValidator {
     this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
     this._buttonElement = this._form.querySelector(this._submitButtonSelector);
     this._errorElement = config.errorElement;
+    
   }
   
 
@@ -135,18 +136,16 @@ class FormValidator {
 
 _checkInputValidity = (inputElement, formElement) => { // проверить валидность инпута
   if (inputElement.validity.valid) {
-  console.log(inputElement.validity.valid)
-  console.log(inputElement)
+
    this._hideInputError(inputElement, config); // если валидный, то прячем ошибку
 
 } else {
   this._showInputError(formElement, inputElement, config);
 
-  console.log(!inputElement.validity.valid)
   }
 };
 
-_setEventListeners = (formElement) => {
+_setEventListeners = () => {
   this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
   });
@@ -156,6 +155,7 @@ _setEventListeners = (formElement) => {
   
 inputList.forEach((inputElement) => {  // найти все элементы формы
     inputElement.addEventListener('input', () => {
+
       this._checkInputValidity(inputElement);  // проверить валидность инпута
       this._toggleButtonState(buttonElement, inputList);
     });
@@ -164,27 +164,20 @@ inputList.forEach((inputElement) => {  // найти все элементы ф�
   this._toggleButtonState(buttonElement, inputList);  // установить значение для кнопки(зависит от валидности формы)
 };
 
-  _hasInvalidInput = (inputElement) => {
-    console.log(inputElement)
+  _hasInvalidInput = () => {
     return this._inputList.some(inputElement => !inputElement.validity.valid);
       };
 
   _toggleButtonState = (buttonElement, inputList, inputElement) => { // если форма валидная то кнопка активна. Иначе - не активна
     if (this._hasInvalidInput(inputList, inputElement)) {
-      console.log(inputElement)
       buttonElement.disabled = true; // делаю кнопку не активной
 } else {
       buttonElement.disabled = false; // делаю кнопку активной
     }
   };
 
-  _showInputError = (inputElement, formElement) => {  // показываем ошибку
-console.log(formElement);
+  _showInputError = (inputElement) => {  // показываем ошибку
     const errorElement = this._form.querySelector(`#${inputElement}-error`); // выбираю span под input'ом
-    console.log(this._form.querySelector(`#${inputElement}-error`));
-    console.log(this._form);
-    console.log(inputElement);
-    
     inputElement.classList.add(inputErrorClass);
     errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add(errorClass);
@@ -192,7 +185,7 @@ console.log(formElement);
   
    _hideInputError = (inputElement) => {  // убираю сообщение об ошибке
     const { inputErrorClass, errorClass } = config;
-    console.log(inputElement)
+
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`); //  выбираю span под input'ом
     inputElement.classList.remove(inputErrorClass);
     errorElement.classList.remove(errorClass);
