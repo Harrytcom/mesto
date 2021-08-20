@@ -19,12 +19,4 @@ function _escapeListener(evt) {
   }
 }
 
-  // function processShowPhotoPopup(placePhoto, attributes = [{src: ''}, {alt: ''}], photoDescription = '') {
-  //   placePhoto.addEventListener('click', () => {
-  //     setElementAttributes(popupPhoto, attributes);
-  //     popupPhotoDescription.textContent = photoDescription;
-  //     openPopup(popup);
-  //   });
-  // }
-
 export {openPopup, closePopup, openCardPreview };

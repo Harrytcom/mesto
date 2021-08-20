@@ -1,4 +1,5 @@
 import { openPopup, closePopup } from '../utils/utils.js';
+import Card from './Card.js';
 
 const popups = document.querySelectorAll('.popup');
 const editProfileButton = document.querySelector('.profile__edit-button'); // выбрал кнопку Редактировать
@@ -48,12 +49,11 @@ const elementContainer = document.querySelector('.elements'); //контейне
 const elementCard = elementTemplate.querySelector('.elements__item');
 const cardContainer = document.querySelector('.popup__card-container');
 const config = {
-  formElement: '.popup__container',
-  formSelector: '.popup__container',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_is-active',
+  formSelector: '.popup__container', // форма полностью <form>
+  inputSelector: '.popup__input',  // любой из четырёх инпутов <input>
+  submitButtonSelector: '.popup__save-button',  // кнопка Сохранить - Создать
+  inputErrorClass: 'popup__input_type_error',  // закрашивает поле красной рамкой
+  errorClass: 'popup__input-error_is-active',  // меняет CSS св-во display
 };
 
 const updateInputValue = (placeName, placeLink) => { // принудительно вызываю событие 'input'
@@ -63,13 +63,11 @@ const updateInputValue = (placeName, placeLink) => { // принудительн
   placeLink.dispatchEvent(new Event('input'));
 };
 
-
 const elementCardClone = elementCard.cloneNode(true);  //клонирование блока с карточкой
 const cardImage = elementCardClone.querySelector('.elements__image'); //присвоил клону картинки
 const cardName = elementCardClone.querySelector('.elements__title'); //присвоил клону строки с именем
 const cardDeleteButton = elementCardClone.querySelector('.elements__trash-button'); //присвоил клону корзины
 const cardLikeButton = elementCardClone.querySelector('.elements__like-button'); //присвоил клону лайка
-
 
 // listener'ы открытия попапов
 editProfileButton.addEventListener('click', () => { openPopup(popupProfileForm), profileValueToForm() });
@@ -81,13 +79,16 @@ cardCloseButton.addEventListener('click', () => closePopup(popupCardForm));
 previewCloseButton.addEventListener('click', () => closePopup(popupCardPreview));
 submitForm.addEventListener('submit', submitFormHandler);
 
-// cardContainer.addEventListener('submit', function(evt) {
-//   evt.preventDefault();
-//   const cardItem = createCard({name: placeName.value, link: placeLink.value});
-//   prependCard(cardItem);
-//   closePopup(popupCardForm);
-// })
+cardContainer.addEventListener('submit', function(evt) {
+  evt.preventDefault();
+  // const cardItem = new Card({name: placeName.value, link: placeLink.value}).genetateCard();
+  // prependCard(cardItem);
+  const cardElement = new Card(placeName.value, placeLink.value).generateCard();
 
+  // Добавляем в DOM
+  elementContainer.prepend(cardElement);
+  closePopup(popupCardForm);
+})
 
 function clearForm() {  // функция очистки инпутов попапа при закрытии
     placeName.value = '';
@@ -106,42 +107,6 @@ function submitFormHandler (evt) {
   closePopup(popupProfileForm);
 }
 
-// function createCard({name, link}) {  //создаю карточку
-//   const elementCardClone = elementCard.cloneNode(true);  //клонирование блока с карточкой
-//   const cardImage = elementCardClone.querySelector('.elements__image'); //присвоил клону картинки
-//   const cardName = elementCardClone.querySelector('.elements__title'); //присвоил клону строки с именем
-//   const cardDeleteButton = elementCardClone.querySelector('.elements__trash-button'); //присвоил клону корзины
-//   const cardLikeButton = elementCardClone.querySelector('.elements__like-button'); //присвоил клону лайка
-//   cardImage.src = link; // беру значение link
-//   cardName.textContent = name; // беру значение name
-//   cardImage.alt = 'На фото ' + name; // беру значение alt
-//   cardDeleteButton.addEventListener('click', function(evt) { //EL для кнопки удаления
-//     evt.target.closest('.elements__item').remove();
-//   });
-
-
-//   cardImage.addEventListener('click', function placePreview() { //EL для превью карточки
-//     openCardPreview();
-//     popupCardPreview.querySelector('.popup__image').src = cardImage.src; //беру значение src
-//     popupCardPreview.querySelector('.popup__image-title').textContent = cardName.textContent; //беру значение имени картинки
-//   });
-
-
-//   cardLikeButton.addEventListener('click', function() { // like для карточки
-//     cardLikeButton.classList.toggle('elements__like-button_is-active');
-//   });
-//   return elementCardClone; // вернул объект
-// }
-
-// function prependCard(card) {
-//   elementContainer.prepend(card);
-// }
-
-// initialCards.forEach(function(cardsImport) {
-//   const cardItem = createCard({name: cardsImport.name, link: cardsImport.link});
-//   prependCard(cardItem);
-// });
-
 // закрытие попапа кликом на оверлей
 popups.forEach(popups => {
   popups.addEventListener('mousedown', (evt) => {
@@ -150,8 +115,5 @@ popups.forEach(popups => {
   }
     });
 });
-
-// enableValidation(config);
-
 
 export { element, cardImage, cardName, cardDeleteButton, cardLikeButton, initialCards, elementContainer, popupCardPreview, elementCardClone, config, cardContainer };

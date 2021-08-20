@@ -1,20 +1,7 @@
 import { openCardPreview } from '../utils/utils.js';
-import { element, cardImage, cardName, cardDeleteButton, cardLikeButton, initialCards, elementContainer, popupCardPreview, elementCardClone, cardContainer } from './index.js';
-
+import { element, cardImage, cardName, cardDeleteButton, cardLikeButton, initialCards, elementContainer, popupCardPreview, elementCardClone, } from './index.js';
 
 class Card {
-
-    _title
-    _image
-    _alt
-    _element
-    _cardImage
-    _cardName
-    _cardDeleteButton
-    _cardLikeButton
-    
-    
-  
     constructor(title, image, alt) {
       this._title = title;
       this._image = image;
@@ -22,7 +9,7 @@ class Card {
       this._element = element;
       this._cardImage = cardImage;
       this._cardName = cardName;
-      this._cardDeleteButton = cardName;
+      this._cardDeleteButton = cardDeleteButton;
       this._cardLikeButton = cardLikeButton;
       this.elementCardClone = elementCardClone;
     }
@@ -60,7 +47,6 @@ class Card {
       this._element.remove();
     }
     
-  
     generateCard() {  // содержит один публичный метод, который возвращает полностью работоспособный и наполненный данными элемент карточки.
       this._element = this._getTemplate();
       this._setEventListeners();
@@ -72,25 +58,12 @@ class Card {
     }
 
     _createCard = ({ name, link }) => {  //создаю карточку
-
       this._cardImage.src = link; // беру значение link
       this._cardName.textContent = name; // беру значение name
       this._cardImage.alt = 'На фото ' + name; // беру значение alt
       this._cardDeleteButton.addEventListener('click', (evt) => { //EL для кнопки удаления
         evt.target.closest('.elements__item').remove();
       });
-
-      // initialCards.forEach(function(cardsImport) {
-      //   const cardItem = _createCard({name: cardsImport.name, link: cardsImport.link});
-      //   prependCard(cardItem);
-      // });
-      
-      // cardContainer.addEventListener('submit', function(evt) {
-      //   evt.preventDefault();
-      //   const cardItem = this._createCard({name: placeName.value, link: placeLink.value});
-      //   prependCard(cardItem);
-      //   closePopup(popupCardForm);
-      // })
     
       this._cardImage.addEventListener('click', placePreview = () => { //EL для превью карточки
         openCardPreview();
@@ -98,7 +71,6 @@ class Card {
         this.popupCardPreview.querySelector('.popup__image-title').textContent = cardName.textContent; //беру значение имени картинки
       });
 
-    
       this._cardLikeButton.addEventListener('click', () => { // like для карточки
         this._cardLikeButton.classList.toggle('elements__like-button_is-active');
       });
@@ -107,14 +79,10 @@ class Card {
     }
 
     _prependCard = (card) => {
-  elementContainer.prepend(card);
+      console.log('tut');
+    this._elementContainer.prepend(card);
+ }
 }
-
-
-    
-}
-
-
 
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
@@ -127,3 +95,4 @@ initialCards.forEach((item) => {
   elementContainer.prepend(cardElement);
 });
 
+export default Card
