@@ -1,4 +1,4 @@
-import { config } from './index.js'
+import { profileValue, cardValue, config, } from './index.js'
 
 class FormValidator {
   constructor(config, formElement){
@@ -17,7 +17,7 @@ class FormValidator {
 _checkInputValidity = (inputElement) => { // проверить валидность инпута
   if (inputElement.validity.valid) {
 
-   this._hideInputError(inputElement, config); // если валидный, то прячем ошибку
+   this._hideInputError(inputElement); // если валидный, то прячем ошибку
 
 } else {
   this._showInputError(inputElement);
@@ -29,11 +29,12 @@ _setEventListeners = () => {
       evt.preventDefault();
   });
 
-  const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));  // найти все инпуты внутри форм ..OK
+  const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));  // найти все инпуты внутри форм
   const buttonElement = this._form.querySelector(this._submitButtonSelector); // найти кнопку Submit
   
 inputList.forEach((inputElement) => {  // найти все элементы формы
     inputElement.addEventListener('input', () => {
+
       this._checkInputValidity(inputElement);  // проверить валидность инпута
       this._toggleButtonState(buttonElement, inputList, inputElement);
     });
@@ -46,8 +47,11 @@ inputList.forEach((inputElement) => {  // найти все элементы ф�
     return this._inputList.some(inputElement => !inputElement.validity.valid);
       };
 
-  _toggleButtonState = (buttonElement, inputList, inputElement) => { // если форма валидная то кнопка активна. Иначе - не активна
-    if (this._hasInvalidInput(inputList, inputElement)) {
+  _toggleButtonState = (buttonElement, inputList, inputElement) => {
+    
+   
+    if (this._hasInvalidInput(inputList, inputElement)) { // если форма валидная то кнопка активна. Иначе - не активна
+      
       buttonElement.disabled = true; // делаю кнопку не активной
 } else {
       buttonElement.disabled = false; // делаю кнопку активной
@@ -76,9 +80,10 @@ inputList.forEach((inputElement) => {  // найти все элементы ф�
     }
 }
 
+// profileValue.enableValidation();
+// cardValue.enableValidation();
 
-let profileValue = new FormValidator(config, document.querySelector('[name="profileValues"]'));
-let cardValue = new FormValidator(config, document.querySelector('[name="cardValues"]'));
+// const profileValue = new FormValidator(config, document.querySelector('[name="profileValues"]'));
+// const cardValue = new FormValidator(config, document.querySelector('[name="cardValues"]'));
 
-profileValue.enableValidation();
-cardValue.enableValidation();
+export { FormValidator };

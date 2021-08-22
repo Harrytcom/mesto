@@ -1,26 +1,37 @@
 import { openCardPreview } from '../utils/utils.js';
-import { element, cardImage, cardName, cardDeleteButton, cardLikeButton, initialCards, elementContainer, popupCardPreview, elementCardClone, } from './index.js';
+import { popupCardPreview, popupImage, popupImageTitle } from './index.js';
 
 class Card {
-    constructor(title, image, alt) {
+    constructor(title, image, cardSelector) {
       this._title = title;
       this._image = image;
-      this._alt = alt;
-      this._element = element;
-      this._cardImage = cardImage;
-      this._cardName = cardName;
-      this._cardDeleteButton = cardDeleteButton;
-      this._cardLikeButton = cardLikeButton;
-      this.elementCardClone = elementCardClone;
+      this._cardSelector = cardSelector;
+      
+      // this._alt = alt;
+      // this._element = element; ?????????????????????????????????????
+      // this._cardImage = cardImage;
+      // this._cardName = cardName;
+      // this._cardDeleteButton = cardDeleteButton;
+      // this._cardLikeButton = cardLikeButton;
+      // this.elementCardClone = elementCardClone;
+
+      // this._popupImage = popupImage;
+      // this._popupImageTitle = popupImageTitle;
     }
   
     _getTemplate() {  // забираю темплейт
       const placeCard = document
-      .querySelector('.element')
+      .querySelector(this._cardSelector)
       .content.querySelector('.elements__item')
       .cloneNode(true);
   
       return placeCard;
+    }
+
+    _takeCardValues = () => {
+      popupImage.src = this._image; //беру значение src
+      popupImage.alt = `${'На фото '}${this._title}`;
+      popupImageTitle.textContent = this._title; //беру значение имени картинки
     }
 
     _setEventListeners() {  // устанавливают слушателей событий
@@ -33,8 +44,7 @@ class Card {
       });
   
       this._element.querySelector('.elements__image').addEventListener('click', () => {
-        popupCardPreview.querySelector('.popup__image').src = this._image; //беру значение src
-        popupCardPreview.querySelector('.popup__image-title').textContent = this._title; //беру значение имени картинки
+        this._takeCardValues()
         openCardPreview(popupCardPreview);
       });
     }
@@ -47,52 +57,15 @@ class Card {
       this._element.remove();
     }
     
-    generateCard() {  // содержит один публичный метод, который возвращает полностью работоспособный и наполненный данными элемент карточки.
+    generateCard() {
       this._element = this._getTemplate();
       this._setEventListeners();
-      this._element.querySelector('.elements__image').src = this._image; // принимает в конструктор её данные
+      this._element.querySelector('.elements__image').src = this._image;
       this._element.querySelector('.elements__title').textContent = this._title;
-      this._element.querySelector('.elements__image').alt = 'На фото ' + this._title;
+      this._element.querySelector('.elements__image').alt = `${'На фото '}${this._title}`;
   
       return this._element;
     }
-
-    _createCard = ({ name, link }) => {  //создаю карточку
-      this._cardImage.src = link; // беру значение link
-      this._cardName.textContent = name; // беру значение name
-      this._cardImage.alt = 'На фото ' + name; // беру значение alt
-      this._cardDeleteButton.addEventListener('click', (evt) => { //EL для кнопки удаления
-        evt.target.closest('.elements__item').remove();
-      });
-    
-      this._cardImage.addEventListener('click', placePreview = () => { //EL для превью карточки
-        openCardPreview();
-        this.popupCardPreview.querySelector('.popup__image').src = cardImage.src; //беру значение src
-        this.popupCardPreview.querySelector('.popup__image-title').textContent = cardName.textContent; //беру значение имени картинки
-      });
-
-      this._cardLikeButton.addEventListener('click', () => { // like для карточки
-        this._cardLikeButton.classList.toggle('elements__like-button_is-active');
-      });
-
-      return elementCardClone; // вернул объект
-    }
-
-    _prependCard = (card) => {
-      console.log('tut');
-    this._elementContainer.prepend(card);
- }
 }
 
-initialCards.forEach((item) => {
-  // Создадим экземпляр карточки
-  const card = new Card(item.name, item.link);
-
-  // Создаём карточку и возвращаем наружу
-  const cardElement = card.generateCard();
-
-  // Добавляем в DOM
-  elementContainer.prepend(cardElement);
-});
-
-export default Card
+export default Card;
