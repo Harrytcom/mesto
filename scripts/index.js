@@ -61,25 +61,15 @@ const config = {
   errorClass: 'popup__input-error_is-active',  // меняет CSS св-во display
 };
 
-const updateInputValue = (placeName, placeLink) => { // принудительно вызываю событие 'input'
-  placeName.value = '';
-  placeName.dispatchEvent(new Event('input'));
-  placeLink.value = '';
-  placeLink.dispatchEvent(new Event('input'));
-};
-
 const elementCardClone = elementCard.cloneNode(true);  //клонирование блока с карточкой
 const cardImage = elementCardClone.querySelector('.elements__image'); //присвоил клону картинки
 const cardName = elementCardClone.querySelector('.elements__title'); //присвоил клону строки с именем
 const cardDeleteButton = elementCardClone.querySelector('.elements__trash-button'); //присвоил клону корзины
 const cardLikeButton = elementCardClone.querySelector('.elements__like-button'); //присвоил клону лайка
-
-
 const profileValue = new FormValidator(config, document.querySelector('[name="profileValues"]'));
 const cardValue = new FormValidator(config, document.querySelector('[name="cardValues"]'));
 profileValue.enableValidation();
 cardValue.enableValidation();
-
 
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
@@ -93,11 +83,19 @@ initialCards.forEach((item) => {
 });
 
 // listener'ы открытия попапов
-editProfileButton.addEventListener('click', () => { openPopup(popupProfileForm), profileValueToForm() });
-cardAddButton.addEventListener('click', () => { openPopup(popupCardForm), clearForm(), updateInputValue(placeName, placeLink) });
+editProfileButton.addEventListener('click', () => {
+  openPopup(popupProfileForm),
+  profileValueToForm()
+});  // updateInputValue(placeName, placeLink)
+
+cardAddButton.addEventListener('click', () => {
+  openPopup(popupCardForm),
+  clearForm()
+  
+}); 
 
 // listener'ы закрытия попапов
-closeEditFormButton.addEventListener('click', () => closePopup(popupProfileForm));
+closeEditFormButton.addEventListener('click', () => closePopup(popupProfileForm) );
 cardCloseButton.addEventListener('click', () => closePopup(popupCardForm));
 previewCloseButton.addEventListener('click', () => closePopup(popupCardPreview));
 submitForm.addEventListener('submit', submitFormHandler);
@@ -114,7 +112,6 @@ cardContainer.addEventListener('submit', function(evt) {
 function clearForm() {  // функция очистки инпутов попапа при закрытии
     placeName.value = '';
     placeLink.value = '';
-
 }
 
 function profileValueToForm() {  // функция, которая позволяет забирать значения из HTML в Form.
