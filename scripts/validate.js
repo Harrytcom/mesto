@@ -10,7 +10,6 @@ class FormValidator {
     this._errorClass = config.errorClass;
     this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
     this._buttonElement = this._form.querySelector(this._submitButtonSelector);
-    this._errorElement = config.errorElement;
   }
 
 _checkInputValidity = (inputElement) => { // проверить валидность инпута
@@ -32,21 +31,21 @@ const buttonElement = this._form.querySelector(this._submitButtonSelector); // �
 inputList.forEach((inputElement) => { // найти все элементы формы
     inputElement.addEventListener('input', () => {
       this._checkInputValidity(inputElement);  // проверить валидность инпута
-      this._toggleButtonState(buttonElement, inputList, inputElement);
+      this.toggleButtonState(buttonElement, inputList, inputElement);
     });
 });
-  this._toggleButtonState(buttonElement, inputList);  // установить значение для кнопки(зависит от валидности формы)
+  this.toggleButtonState(buttonElement, inputList);  // установить значение для кнопки(зависит от валидности формы)
 };
 
 _hasInvalidInput = () => {
   return this._inputList.some(inputElement => !inputElement.validity.valid);
     };
 
-_toggleButtonState = (buttonElement, inputList, inputElement) => {
-  if (this._hasInvalidInput(inputList, inputElement)) { // если форма валидная то кнопка активна. Иначе - не активна
-    buttonElement.disabled = true; // делаю кнопку не активной
-} else if (!this._hasInvalidInput(inputList, inputElement)) {
-    buttonElement.disabled = false; // делаю кнопку активной
+toggleButtonState = (inputElement) => {
+  if (this._hasInvalidInput(this._inputList, inputElement)) { // если форма валидная то кнопка активна. Иначе - не активна
+    this._buttonElement.disabled = true; // делаю кнопку не активной
+} else if (!this._hasInvalidInput(this._inputList, inputElement)) {
+    this._buttonElement.disabled = false; // делаю кнопку активной
   }
 };
 

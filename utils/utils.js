@@ -4,15 +4,15 @@ function openCardPreview(popup) {
 
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
-  document.addEventListener('keydown', _escapeListener);
+  document.addEventListener('keydown', escapeListener);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
-  document.removeEventListener('keydown', _escapeListener);
+  document.removeEventListener('keydown', escapeListener);
 }
 
-function _escapeListener(evt) {
+function escapeListener(evt) {
   if (evt.key === 'Escape') {
   const popupIsOpened = document.querySelector('.popup_is-opened');
   closePopup(popupIsOpened);

@@ -59,6 +59,7 @@ const config = {
   submitButtonSelector: '.popup__save-button',  // кнопка Сохранить - Создать
   inputErrorClass: 'popup__input_type_error',  // закрашивает поле красной рамкой
   errorClass: 'popup__input-error_is-active',  // меняет CSS св-во display
+  
 };
 
 const elementCardClone = elementCard.cloneNode(true);  //клонирование блока с карточкой
@@ -70,7 +71,6 @@ const profileValue = new FormValidator(config, document.querySelector('[name="pr
 const cardValue = new FormValidator(config, document.querySelector('[name="cardValues"]'));
 profileValue.enableValidation();
 cardValue.enableValidation();
-
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
   const card = new Card(item.name, item.link, '.element');
@@ -82,17 +82,23 @@ initialCards.forEach((item) => {
   elementContainer.prepend(cardElement);
 });
 
+function clearForm() {  // функция очистки инпутов попапа при закрытии
+  placeName.value = '';
+  placeLink.value = '';
+}
+
 // listener'ы открытия попапов
 editProfileButton.addEventListener('click', () => {
   openPopup(popupProfileForm),
-  profileValueToForm()
-});  // updateInputValue(placeName, placeLink)
+  profileValueToForm(),
+  profileValue.toggleButtonState()
+});
 
 cardAddButton.addEventListener('click', () => {
   openPopup(popupCardForm),
-  clearForm()
-  
-}); 
+  clearForm(),
+  cardValue.toggleButtonState()
+});
 
 // listener'ы закрытия попапов
 closeEditFormButton.addEventListener('click', () => closePopup(popupProfileForm) );
@@ -108,11 +114,6 @@ cardContainer.addEventListener('submit', function(evt) {
   elementContainer.prepend(cardElement);
   closePopup(popupCardForm);
 })
-
-function clearForm() {  // функция очистки инпутов попапа при закрытии
-    placeName.value = '';
-    placeLink.value = '';
-}
 
 function profileValueToForm() {  // функция, которая позволяет забирать значения из HTML в Form.
     nameInput.value = profileName.textContent;
