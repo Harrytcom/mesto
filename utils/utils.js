@@ -14,9 +14,9 @@ function closePopup(popup) {
 
 function escapeListener(evt) {
   if (evt.key === 'Escape') {
-  const popupIsOpened = document.querySelector('.popup_is-opened');
-  closePopup(popupIsOpened);
+    const popupIsOpened = document.querySelector('.popup_is-opened');
+    closePopup(popupIsOpened);
   }
 }
 
-export {openPopup, closePopup, openCardPreview };
+export { openPopup, closePopup, openCardPreview };

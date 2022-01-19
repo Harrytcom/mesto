@@ -1,6 +1,10 @@
 import { openPopup, closePopup } from '../utils/utils.js';
 import Card from './Card.js';
-import { FormValidator } from './validate.js'
+import { FormValidator } from './validate.js';
+import { Section } from './Section.js';
+import { Popup } from './Popup.js';
+import { PopupWithImage } from './PopupWithImage.js';
+
 
 const popup = document.querySelectorAll('.popup');
 const editProfileButton = document.querySelector('.profile__edit-button'); // выбрал кнопку Редактировать
@@ -59,7 +63,6 @@ const config = {
   submitButtonSelector: '.popup__save-button',  // кнопка Сохранить - Создать
   inputErrorClass: 'popup__input_type_error',  // закрашивает поле красной рамкой
   errorClass: 'popup__input-error_is-active',  // меняет CSS св-во display
-  
 };
 
 const elementCardClone = elementCard.cloneNode(true);  //клонирование блока с карточкой
@@ -67,10 +70,12 @@ const cardImage = elementCardClone.querySelector('.elements__image'); //прис
 const cardName = elementCardClone.querySelector('.elements__title'); //присвоил клону строки с именем
 const cardDeleteButton = elementCardClone.querySelector('.elements__trash-button'); //присвоил клону корзины
 const cardLikeButton = elementCardClone.querySelector('.elements__like-button'); //присвоил клону лайка
+
 const profileValue = new FormValidator(config, document.querySelector('[name="profileValues"]'));
 const cardValue = new FormValidator(config, document.querySelector('[name="cardValues"]'));
 profileValue.enableValidation();
 cardValue.enableValidation();
+
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
   const card = new Card(item.name, item.link, '.element');
@@ -101,7 +106,7 @@ cardAddButton.addEventListener('click', () => {
 });
 
 // listener'ы закрытия попапов
-closeEditFormButton.addEventListener('click', () => closePopup(popupProfileForm) );
+closeEditFormButton.addEventListener('click', () => closePopup(popupProfileForm));
 cardCloseButton.addEventListener('click', () => closePopup(popupCardForm));
 previewCloseButton.addEventListener('click', () => closePopup(popupCardPreview));
 submitForm.addEventListener('submit', submitFormHandler);
@@ -109,13 +114,15 @@ submitForm.addEventListener('submit', submitFormHandler);
 cardContainer.addEventListener('submit', function(evt) {
   evt.preventDefault();
   const cardElement = new Card(placeName.value, placeLink.value, '.element').generateCard();
+  console.log(cardElement);
 
   // Добавляем в DOM
   elementContainer.prepend(cardElement);
   closePopup(popupCardForm);
 })
 
-function profileValueToForm() {  // функция, которая позволяет забирать значения из HTML в Form.
+// функция, которая позволяет забирать значения из HTML в Form.
+function profileValueToForm() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileCareer.textContent;
 }
@@ -128,12 +135,26 @@ function submitFormHandler (evt) {
 }
 
 // закрытие попапа кликом на оверлей
-popup.forEach(popup => {
+popup.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target === evt.currentTarget) {
     closePopup(popup);
   }
     });
 });
+
+const initialCardsList = new Section({ item: initialCards, renderer: (item) => itemsRenderer(item) }, 'elements');
+console.log(initialCardsList);
+
+function itemsRenderer(item) {
+  const card = new Card(item.name, item.link, '.element');
+
+  // Создаём карточку и возвращаем наружу
+  const cardElement = card.generateCard();
+
+  // Добавляем в DOM
+  elementContainer.prepend(cardElement);
+} 
+
 
 export { element, cardImage, cardName, cardDeleteButton, cardLikeButton, initialCards, elementContainer, popupCardPreview, elementCardClone, config, cardContainer, profileValue, cardValue, popupImage, popupImageTitle };

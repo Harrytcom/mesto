@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "Страница с отзывчивым интерфейсом. Есть возможность добавлять карточки, редактировать информацию профиля, лайкать карточки.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Warhysteria/mesto.git"
+  },
+  "author": "Harry Tkachenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Warhysteria/mesto/issues"
+  },
+  "homepage": "https://github.com/Warhysteria/mesto#readme"
+}

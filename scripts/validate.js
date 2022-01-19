@@ -1,4 +1,4 @@
-import { profileValue, cardValue, config, } from './index.js'
+// import { profileValue, cardValue, config, } from './index.js'
 
 class FormValidator {
   constructor(config, formElement){
@@ -58,11 +58,10 @@ _showInputError = (inputElement) => {  // показываем ошибку
 };
 
 _hideInputError = (inputElement) => {  // убираю сообщение об ошибке
-const { inputErrorClass, errorClass } = config;
 const name = inputElement.getAttribute('name');
 const errorElement = this._form.querySelector(`#${name}-error`); //  выбираю span под input'ом
-inputElement.classList.remove(inputErrorClass);
-errorElement.classList.remove(errorClass);
+inputElement.classList.remove(this._inputErrorClass);
+errorElement.classList.remove(this._errorClass);
 errorElement.textContent = '';
 };
 
