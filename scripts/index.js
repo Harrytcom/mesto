@@ -52,11 +52,13 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
 const element = document.querySelector('#element'); //Темплейт
 const elementTemplate = element.content; //всё что внутри темплейта
 const elementContainer = document.querySelector('.elements'); //контейнер под карточку
 const elementCard = elementTemplate.querySelector('.elements__item');
 const cardContainer = document.querySelector('.popup__card-container');
+
 const config = {
   formSelector: '.popup__container', // форма полностью <form>
   inputSelector: '.popup__input',  // любой из четырёх инпутов <input>
@@ -114,7 +116,6 @@ submitForm.addEventListener('submit', submitFormHandler);
 cardContainer.addEventListener('submit', function(evt) {
   evt.preventDefault();
   const cardElement = new Card(placeName.value, placeLink.value, '.element').generateCard();
-  console.log(cardElement);
 
   // Добавляем в DOM
   elementContainer.prepend(cardElement);

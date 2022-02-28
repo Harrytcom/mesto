@@ -2,8 +2,8 @@
 
 class Section {
 
-    constructor({ items, renderer }, elementContainer) {
-        this._items = items;
+    constructor({ item, renderer }, elementContainer) {
+        this._item = item;
         this._renderer = renderer;
         this._elementContainer =  document.querySelector(`${'.' + elementContainer}`);
     }
@@ -16,8 +16,8 @@ class Section {
 
 
       // renderItems — перебирает массив данных _items. Вызывает для каждого элемента массива метод addItem
-    renderItems(items) { 
-        items.forEach(item => {
+    renderItems(item) { 
+        item.forEach(item => {
           this._renderer(item);
         });
       }
@@ -43,4 +43,3 @@ export { Section }
 // }, cardContainer);
 
 // cardList.renderItems(initialCards);
-
