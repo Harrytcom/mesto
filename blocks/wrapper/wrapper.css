@@ -1,4 +1,10 @@
 .wrapper {
   background: #000;
-  margin: 0 auto;
+  margin: 0 50px;
+}
+
+@media (max-width: 500px) {
+  .wrapper { 
+    margin: 0;
+  }
 }

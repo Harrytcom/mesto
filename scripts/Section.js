@@ -15,8 +15,8 @@ class Section {
       }
 
 
-      // renderItems — перебирает массив данных _items. Вызывает для каждого элемента массива метод addItem
-    renderItems(item) { 
+    // renderItems — перебирает массив данных _items. Вызывает для каждого элемента массива метод addItem
+    renderItems(item) {
         item.forEach(item => {
           this._renderer(item);
         });
