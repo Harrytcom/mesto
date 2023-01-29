@@ -8,6 +8,11 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  transition: transform .3s;
+}
+
+.profile__avatar:hover {
+  transform: scale(1.2);
 }
 
 @media (min-width: 768px) {

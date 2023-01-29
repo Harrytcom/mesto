@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
   </head>
-
   <body class="wrapper">
+    <!-- header section -->
     <header class="header">
       <img class="header__logo" src="./images/header-logo.svg" alt="Логотип сайта">
     </header>
-
   <main>
+    <!-- profile section -->
     <section class="profile">
       <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Аватар профиля">
       <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -20,14 +20,13 @@
       <p class="profile__career">Исследователь океана</p>
       <button class="profile__add-button" type="button"></button>
     </section>
-
+    <!-- elements section -->
     <section class="elements"></section>
-
+    <!-- footer -->
     <footer class="footer">
       <p class="footer__copyrights">&copy; 2021 Mesto Russia</p>
     </footer>
   </main>
-
     <!-- popup редактирования профиля -->
   <div class="popup popup_profile-form-js">
     <form class="popup__container" name="profileValues">
@@ -42,7 +41,6 @@
       </fieldset>
     </form>
   </div>
-
   <!-- popup добавления карточки -->
   <div class="popup popup_card-form-js">
     <form class="popup__container popup__card-container" name="cardValues">
@@ -57,7 +55,6 @@
       </fieldset>
     </form>
   </div>
-
   <!-- popup превью карточки -->
   <div class="popup popup_image-preview-js">
     <div class="popup__card-wrapper">
@@ -68,8 +65,7 @@
       </figure>
     </div>
   </div>
-  
-  <!-- импорт карточек из массива -->
+  <!-- template для импорта карточек из массива -->
   <template id="element" class="element">
     <div class="elements__item">
       <button class="elements__trash-button" type="button"></button>
@@ -80,7 +76,6 @@
       </div>
     </div>
   </template>
-
 
   <script src="./scripts/index.js" type="module" defer></script>
   </body>

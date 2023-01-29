@@ -17,7 +17,6 @@ class Card {
       return placeCard;
     }
     
-
     _takeCardValues = () => {
       popupImage.src = this._image; // беру значение src
       popupImage.alt = `${'На фото ' + this._title}`;

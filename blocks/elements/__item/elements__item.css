@@ -6,4 +6,9 @@
   margin-bottom: 20px;
   background-color: #fff;
   position: relative;
+  transition: transform .3s;
+}
+
+.elements__item:hover {
+  transform: scale(1.05);
 }
